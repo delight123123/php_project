@@ -12,4 +12,6 @@ while($b=mysqli_fetch_array($aaaa)){
     echo '<h2>'.$b['title'].'</h2>';
     echo $b['description'];
 }
+
+
 ?>

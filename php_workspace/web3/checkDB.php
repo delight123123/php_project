@@ -1,6 +1,6 @@
 <?php
 
-$link=mysqli_connect("192.168.219.41","test2","1234");
+$link=mysqli_connect("glddld.mooo.com","glddld","1234","topic");
 if($link){
     echo '성공';
 }else{
