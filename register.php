@@ -38,7 +38,7 @@
     		var textname=$(this).val();
     		if(textname=="인증하기"){
     			$.ajax({
-    				url:"/register/emailcer",
+    				url:"/authemail.php",
     				type:"post",
     				data:
     					{
@@ -295,7 +295,7 @@
 		$("#output").hide();
 		
 		$.ajax({
-			url:"/useremail.php",
+			url:"/emailsend.php",
 			type:"post",
 			data:
 				{
