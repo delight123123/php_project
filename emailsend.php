@@ -1,7 +1,9 @@
 <?php
+
 require('./authemail.php');
-
-
+$who='glddld@nate.com';
+$title='회원가입 인증번호 입니다.';
+$fromwho='fhdhaldh@naver.com';
 $rand_num = sprintf("%06d",rand(000000,999999));
 $authNum=$rand_num;
 $subject="안녕하세요. 회원가입 인증키입니다.";
@@ -17,7 +19,6 @@ $sb.="<body style=\"font-size: 1rem;\">";
 $sb.="<div id=\"dmwrap\" style=\"width:100%;height:100%;margin:0 auto;\">";      
 $sb.="<div class=\"marginwrap\" style=\"width:90%; margin: 0 auto;padding-top:5vh;\" >";
 $sb.="<div class=\"dmtit\" style=\"margin:0 auto;padding-bottom:2vh;border-bottom:2px solid #24b7bf;\">";
-
 $sb.="<span><h1>인증번호 발송 안내</h1></span>";
 $sb.="</div>";
 $sb.="<div class=\"dm_contents\" style=\"margin-top:5vh;margin-bottom:12vh;\">";
@@ -40,5 +41,10 @@ $sb.="</div>";
 $sb.="</div>";
 $sb.="</body>";
 $sb.="</html>";
-echo "$sb";
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+echo "$who<br>$fromwho";
+$bool=mail($who,$title,$sb,$header);
+echo "$bool";
+
 ?>
