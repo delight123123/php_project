@@ -1,11 +1,28 @@
 <?php
 
-require('./authemail.php');
-$who='glddld@nate.com';
+include_once('./mailer.ini.php');
+
+include_once('./authvalue.php');
+
+$who;
+
+if($_POST['email3']!=''){
+    $who=$_POST['email1'].'@'.$_POST['email3'];
+}else{
+    $who=$_POST['email1'].'@'.$_POST['email2'];
+}
 $title='회원가입 인증번호 입니다.';
 $fromwho='fhdhaldh@naver.com';
 $rand_num = sprintf("%06d",rand(000000,999999));
 $authNum=$rand_num;
+
+if(isset($auth[$who])){
+    delete($auth[$who]);
+    $auth[$who]=$authNum;
+}else{
+    $auth[$who]=$authNum;
+}
+
 $subject="안녕하세요. 회원가입 인증키입니다.";
 $sb="<!DOCTYPE html>";
 $sb.="<html lang=\"ko\" style=\"font-size:16px;\">";
@@ -28,7 +45,7 @@ $sb.="인증번호를 다음과 같이 알려드립니다.";
 $sb.="</p>";
 $sb.="<p class=\"con\" style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;margin:3vh 0;\">";
 $sb.="인증번호 : <strong>".$authNum."</strong><br>";
-$sb.="발급시간 : ".date("Y-m-d h:i:s",time());
+$sb.="발급시간 : ".date("Y-m-d H:i:s",time());
 $sb.="</p>";
 $sb.="<p style=\"font-size:1rem;font-weight:500;letter-spacing:-0.05em;line-height:1.2rem;color:#474747;\">감사합니다.</p>";
 $sb.="</div>";
@@ -41,10 +58,15 @@ $sb.="</div>";
 $sb.="</div>";
 $sb.="</body>";
 $sb.="</html>";
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-echo "$who<br>$fromwho";
-$bool=mail($who,$title,$sb,$header);
-echo "$bool";
+
+
+
+$res=mailer("admin",$fromwho,$who,$subject,$sb,1);
+
+if($res==1){
+    echo 1;
+}else{
+    echo 2;
+}
 
 ?>
