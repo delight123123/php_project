@@ -51,7 +51,7 @@
     				,
     				success:function(res){
     					 if(res==1){
-    						alert("인증완료");
+    						alert("인증되었습니다.");
     						//$("#email1").attr("disabled",true);
     						//$("#email2").attr("disabled",true);
     						//$("#email3").attr("disabled",true);
@@ -62,7 +62,7 @@
     						stop();
     						$("#output").hide();
     					}else if(res==2){
-    						alert("인증실패");    						
+    						alert("인증번호가 틀렸습니다.");    						
     					}else{
     						
     					} 

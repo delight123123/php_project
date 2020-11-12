@@ -2,7 +2,7 @@
 
 include_once('./mailer.ini.php');
 
-include_once('./authvalue.php');
+require('./sessionStart.php');
 
 $who;
 
@@ -15,13 +15,6 @@ $title='회원가입 인증번호 입니다.';
 $fromwho='fhdhaldh@naver.com';
 $rand_num = sprintf("%06d",rand(000000,999999));
 $authNum=$rand_num;
-
-if(isset($auth[$who])){
-    delete($auth[$who]);
-    $auth[$who]=$authNum;
-}else{
-    $auth[$who]=$authNum;
-}
 
 $subject="안녕하세요. 회원가입 인증키입니다.";
 $sb="<!DOCTYPE html>";
@@ -64,6 +57,7 @@ $sb.="</html>";
 $res=mailer("admin",$fromwho,$who,$subject,$sb,1);
 
 if($res==1){
+    $_SESSION['authNum']=$authNum;
     echo 1;
 }else{
     echo 2;
