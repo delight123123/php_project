@@ -2,8 +2,8 @@
 
 include_once('./mailer.ini.php');
 
-require('./sessionStart.php');
 
+session_start();
 $who;
 
 if($_POST['email3']!=''){
