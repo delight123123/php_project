@@ -10,6 +10,7 @@
     }else{
         $eamil2=$_POST['email2'];
     }
+    $userpw=password_hash($userpw,PASSWORD_DEFAULT);
 
     $sql= "insert into tbl_user(userid,userpw,email1,email2) values('$userid', '$userpw', '$eamil1', '$email2')";
         $res=mysqli_query($link,$sql);

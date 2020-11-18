@@ -413,7 +413,7 @@
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" id="sub">회원가입</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> 이미 아이디가 있나요? <a href='' class="text-primary">로그인</a>
+                  <div class="text-center mt-4 font-weight-light"> 이미 아이디가 있나요? <a href='/login.php' class="text-primary">로그인</a>
                   </div>
                 </form>
               </div>
