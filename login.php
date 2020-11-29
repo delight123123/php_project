@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="ko">
   <head>
     <!-- Required meta tags -->
@@ -20,51 +20,56 @@
     <link rel="shortcut icon" href='/resources/assets/images/favicon.png'>
     <script type="text/javascript">
       $(function(){
-        $("#btn").click(function(){
+        $("form[name=loginfrm]").submit(function(){
+          event.preventDefault();
           $.ajax({
-    				url:"/login_do.php",
+    				url:"./login_do.php",
     				type:"post",
     				data:
     					{
-    						userid : $("#userid").val(),
-    						userpw: $("#userpw").val()
+    						userid : $("input[name=userid]").val(),
+    						userpw: $("input[name=userpw]").val()
     					}
     				,
     				success:function(res){
     					 if(res==1){
     						alert('입력하신 아이디가 존재하지 않습니다.');
+                event.preventDefault();
     					}else if(res==2){
-                var userid1=$('#userid').val();
+                var userid1=$("input[name=userid]").val();
     						<?php
                 session_start();
-                $_SESSION['userid']="<script>document.write (userid1);</script>";
+                //$_SESSION['userid']="<script type='text/javascript'>useridreturn();</script>";
                 ?>
                 if($("input[type=checkbox]").is(":checked")){
                   <?php
-                  setcookie("chk_userid","<script>document.write (userid1);</script>",time()+3600,"/");
-                  echo "alert('로그인되었습니다.1');location.href='./main.php';";
+                  setcookie("chk_userid",$_SESSION['userid'],time()+3600,"/");
+                  echo "alert('로그인되었습니다.');location.href='./main.php';";
                   ?>
                 }else{
                   <?php
-                    setcookie("chk_userid","<script>document.write (userid1);</script>",0,"/");
-                   echo "alert('로그인되었습니다.2');location.href='./main.php';";
+                    setcookie("chk_userid",$_SESSION['userid'],0,"/");
+                   echo "alert('로그인되었습니다.');location.href='./main.php';";
                   ?>
                   }
                   
-                }
-    					}else if(res==3){
+                }else if(res==3){
     						alert('비밀번호가 틀렸습니다.');
-    					} 
+                event.preventDefault();
+    					  } 
+    					}
+              ,
+              error:function(xhr,status,error){
+    					  alert("Error : "+status+", "+error);
+    				  }
     					
-    				},
-    				error:function(xhr,status,error){
-    					alert("Error : "+status+", "+error);
-    				}
+    				});
+    				
     			});
         });
 
         
-      });
+
     </script>
   </head>
   <body>
@@ -77,15 +82,15 @@
 
                 <h4>안녕하세요!</h4>
                 <h6 class="font-weight-light">계속 진행하기위해 로그인해주세요.</h6>
-                <form class="pt-3">
+                <form class="pt-3" name="loginfrm" method="post">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="아이디" name="userid" value="<?=$_COOKIE['chk_userid']?>">
+                    <input type="text" class="form-control form-control-lg" id="userid" placeholder="아이디" name="userid" value="<?=$_COOKIE['chk_userid']?>">
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" name="userpw">
+                    <input type="password" class="form-control form-control-lg" id="userpw" placeholder="비밀번호" name="userpw">
                   </div>
                   <div class="mt-3">
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="buttion" id='btn'>로그인</button>
+                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" type="submit" id='btn'>로그인</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <div class="form-check">

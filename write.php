@@ -1,16 +1,56 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
+<?php require_once('./maintop.php');?>
+
 <link rel="stylesheet" type="text/css" href='/resources/css/mainstyle.css' />
 <link rel="stylesheet" type="text/css" href='/resources/css/clear.css' />
 <link rel="stylesheet" type="text/css" href='/resources/css/formLayout.css' />
 <link rel="stylesheet" type="text/css" href='/resources/css/mystyle.css' />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 작성</title>
-    <script type="text/javascript" src='/resources/js/jquery-3.4.1.min.js'></script>
+
+
+<div class="content-wrapper">
+	<div class="card">
+		<div class="card-body">
+        <div class="divForm">
+            <form name="frmWrite" method="post" enctype="multipart/form-data" 
+                action='./write_do.php' >
+            <fieldset>
+                <legend>글쓰기</legend>
+                    <div class="firstDiv">
+                        <label for="title">제목</label>
+                        <input type="text" id="title" name="title"  />
+                    </div>
+                    <div>  
+                        <label for="content">내용</label>        
+                        <textarea id="content" name="content" rows="12" cols="40"></textarea>
+                    </div>
+                    <div>
+                        <label for="upfile">첨부파일</label>
+                        <input type="file" id="upfile" name="upfile" />(최대 2M)
+                    </div>
+                    <div class="center">
+                        <input type = "submit" value="등록"/>
+                        <input type = "Button" value="글목록" 
+                        onclick
+                        ="location.href	='./main.php'" />         
+                    </div>
+                </fieldset>
+            </form>
+        </div>  
+
+           
+		
+		</div>
+	</div>
+</div>
+
+
+
+<?php require_once('./mainbottom.php');?>
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
+        $("#mainBoard").addClass("active");
+
 		$("form[name=frmWrite]").submit(function() {
 			if($("#title").val()==null || $("#title").val()==""){
 				alert("제목을 입력하세요");
@@ -21,26 +61,3 @@
 	});
 	
 </script>
-</head>
-<body>
-<div class="divForm">
-<form name="frmWrite" method="post" action="/write_ok.php" >
- <fieldset>
-	<legend>글쓰기</legend>
-        <div class="firstDiv">
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title"  />
-        </div>
-        <div>  
-        	<label for="description">내용</label>        
- 			<textarea id="description" name="description" rows="12" cols="40"></textarea>
-        </div>
-        <div class="center">
-            <input type = "submit" value="등록"/>
-            <input type = "Button" value="글목록" onclick="location.href	='/index.php'" />         
-        </div>
-    </fieldset>
-</form>
-</div>   
-</body>
-</html>

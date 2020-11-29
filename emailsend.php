@@ -57,7 +57,7 @@ $sb.="</html>";
 $res=mailer("admin",$fromwho,$who,$subject,$sb,1);
 
 if($res==1){
-    $_SESSION['authNum']=$authNum;
+    $_SESSION[$who]=$authNum;
     echo 1;
 }else{
     echo 2;

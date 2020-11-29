@@ -14,7 +14,7 @@ function mailer($fname, $fmail, $to, $subject, $content, $type=0, $file="", $cc=
       $mail->Host = "smtp.naver.com";
       $mail->Port = 465;
       $mail->Username = "fhdhaldh";
-      $mail->Password = "tjswn92";
+      $mail->Password = "%rladbstmd&65";
       $mail->CharSet = 'UTF-8';
       $mail->From = $fmail;
       $mail->FromName = $fname;
