@@ -16,11 +16,11 @@
                 <legend>글쓰기</legend>
                     <div class="firstDiv">
                         <label for="title">제목</label>
-                        <input type="text" id="title" name="title"  />
+                        <input type="text" id="title" name="title" value="<?=$title?>" />
                     </div>
                     <div>  
                         <label for="content">내용</label>        
-                        <textarea id="content" name="content" rows="12" cols="40"></textarea>
+                        <textarea id="content" name="content" rows="12" cols="40" value="<?=$content?>"></textarea>
                     </div>
                     <div>
                         <label for="upfile">첨부파일</label>

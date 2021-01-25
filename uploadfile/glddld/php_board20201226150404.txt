@@ -1,0 +1,52 @@
+CREATE TABLE reboard.tbl_user
+(
+   userid       VARCHAR(50)
+                  CHARACTER SET utf8mb4
+                  COLLATE utf8mb4_unicode_ci
+                  NOT NULL,
+   userpw       TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+   email1       VARCHAR(900)
+                  CHARACTER SET utf8mb4
+                  COLLATE utf8mb4_unicode_ci
+                  NOT NULL,
+   email2       VARCHAR(900)
+                  CHARACTER SET utf8mb4
+                  COLLATE utf8mb4_unicode_ci
+                  NOT NULL,
+   adminauth    VARCHAR(3)
+                  CHARACTER SET utf8mb4
+                  COLLATE utf8mb4_unicode_ci
+                  NOT NULL
+                  DEFAULT 'N',
+   PRIMARY KEY(userid)
+)
+ENGINE INNODB
+COLLATE 'utf8mb4_unicode_ci'
+ROW_FORMAT DEFAULT
+
+
+CREATE TABLE reboard.`tbl_reboard`
+(
+   `reboard_no`          INT AUTO_INCREMENT NOT NULL,
+   `reboard_title`       VARCHAR(300) NOT NULL,
+   `reboard_content`     TEXT NULL,
+   `reboard_reg`         DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+   `readcount`           INT NOT NULL DEFAULT 0,
+   `groupno`             INT NOT NULL DEFAULT 0,
+   `step`                INT NOT NULL DEFAULT 0,
+   `sortno`              INT NULL DEFAULT 0,
+   `delflag`             VARCHAR(20) NOT NULL DEFAULT 'N',
+   `filename`            VARCHAR(150) NULL,
+   `filesize`            INT NULL DEFAULT 0,
+   `downcount`           INT NULL DEFAULT 0,
+   `originalfilename`    VARCHAR(150) NULL,
+   `userid`              VARCHAR(50) NULL,
+   PRIMARY KEY(`reboard_no`)
+)
+ENGINE = INNODB
+CHARACTER SET 'utf8mb4'
+COLLATE 'utf8mb4_unicode_ci';
+
+ALTER TABLE reboard.`tbl_reboard`
+   ADD CONSTRAINT `userid` FOREIGN KEY(`userid`)
+          REFERENCES reboard.tbl_user (userid)

@@ -1,17 +1,19 @@
 <?php
 
+require('./DBconnect.php');
+require_once('./pagingInfo.php');
 
-$res222=password_hash("rladlrwn89!",PASSWORD_DEFAULT);
+while($row=tblregister(mysqli_query($link,$listsql))){
+    if($row['delflag']=='N'){ ?>
+<tr>
+    <td><?=$row['reboard_no'] ?></td>
+    <td><?=$row['reboard_title'] ?></td>
+    <td><?=$row['userid'] ?></td>
+    <td><?=$row['reboard_reg'] ?></td>
+    <td><?=$row['readcount'] ?></td>
+</tr>
 
-
-$a="$2y$10$FkSow4HjiA9pIoW6eBHY7.nWgY3kgpXdpFuoat2wfjXOsAipgTsIe";
-
-
-
-if(password_verify("rladlrwn89!",$res222)){
-    echo "aaaa";
-}else{
-    echo "bbbb";
+<?php	}
 }
 
 ?>

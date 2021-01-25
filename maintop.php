@@ -51,7 +51,7 @@
                 <div class="nav-profile-img">
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">이거 왜 안돼?</p>
+                  <p class="mb-1 text-black">Menu</p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -92,7 +92,7 @@
                   <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                  <span class="font-weight-bold mb-2">//////</span>
+                  <span class="font-weight-bold mb-2"><?php echo $_SESSION['userid']?></span>
                   <span class="text-secondary text-small">로그인한 아이디</span>
                 </div>
               </a>
